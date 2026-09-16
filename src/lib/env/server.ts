@@ -13,8 +13,8 @@ const optionalString = z.preprocess(
 
           // Wajib sejak Fase A3
             NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
-              NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
-                SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
+              NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1),
+                SUPABASE_SECRET_KEY: z.string().min(1),
 
                   // Opsional sampai fasenya aktif; adapter akan menolak jalan jika kosong
                     MIDTRANS_SERVER_KEY: optionalString,
