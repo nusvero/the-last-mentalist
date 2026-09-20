@@ -43,7 +43,8 @@ export async function signInAction(
     email: field(formData, "email"),
     password: field(formData, "password"),
   });
-  if (!parsed.success) return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
+  if (!parsed.success)
+    return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
 
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
@@ -51,7 +52,10 @@ export async function signInAction(
   if (error) {
     if (error.status === 429) return RATE_LIMITED;
     if (error.code === "email_not_confirmed") {
-      return { status: "error", message: "Email belum diverifikasi. Cek kotak masuk Anda." };
+      return {
+        status: "error",
+        message: "Email belum diverifikasi. Cek kotak masuk Anda.",
+      };
     }
     // Pesan sengaja umum: tidak membocorkan apakah email terdaftar.
     return { status: "error", message: "Email atau password salah." };
@@ -71,7 +75,8 @@ export async function signUpAction(
     password: field(formData, "password"),
     confirmPassword: field(formData, "confirmPassword"),
   });
-  if (!parsed.success) return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
+  if (!parsed.success)
+    return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
 
   const { fullName, email, password } = parsed.data;
   const supabase = await createSupabaseServerClient();
@@ -94,7 +99,9 @@ export async function signUpAction(
     if (error.code === "weak_password") {
       return {
         status: "error",
-        fieldErrors: { password: "Password terlalu lemah. Gunakan kombinasi yang lebih kuat." },
+        fieldErrors: {
+          password: "Password terlalu lemah. Gunakan kombinasi yang lebih kuat.",
+        },
       };
     }
     // Email yang sudah terdaftar dijawab sama seperti sukses (anti enumerasi akun).
@@ -116,7 +123,8 @@ export async function requestPasswordResetAction(
   formData: FormData,
 ): Promise<AuthFormState> {
   const parsed = forgotPasswordSchema.safeParse({ email: field(formData, "email") });
-  if (!parsed.success) return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
+  if (!parsed.success)
+    return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
 
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.auth.resetPasswordForEmail(parsed.data.email, {
@@ -128,7 +136,8 @@ export async function requestPasswordResetAction(
 
   return {
     status: "success",
-    message: "Jika email tersebut terdaftar, tautan untuk mengatur ulang password sudah dikirim.",
+    message:
+      "Jika email tersebut terdaftar, tautan untuk mengatur ulang password sudah dikirim.",
   };
 }
 
@@ -140,7 +149,8 @@ export async function updatePasswordAction(
     password: field(formData, "password"),
     confirmPassword: field(formData, "confirmPassword"),
   });
-  if (!parsed.success) return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
+  if (!parsed.success)
+    return { status: "error", fieldErrors: toFieldErrors(parsed.error) };
 
   const supabase = await createSupabaseServerClient();
   const { data: claimsData } = await supabase.auth.getClaims();
@@ -162,10 +172,15 @@ export async function updatePasswordAction(
     if (error.code === "weak_password") {
       return {
         status: "error",
-        fieldErrors: { password: "Password terlalu lemah. Gunakan kombinasi yang lebih kuat." },
+        fieldErrors: {
+          password: "Password terlalu lemah. Gunakan kombinasi yang lebih kuat.",
+        },
       };
     }
-    return { status: "error", message: "Password belum dapat diperbarui. Silakan coba lagi." };
+    return {
+      status: "error",
+      message: "Password belum dapat diperbarui. Silakan coba lagi.",
+    };
   }
 
   revalidatePath("/", "layout");
