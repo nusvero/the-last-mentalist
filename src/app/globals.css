@@ -2,129 +2,131 @@
 
 /* =========================================================
    THE LAST MENTALIST — Design Tokens (Fase A1)
-      Hirarki: HITAM = panggung, IVORY = teks, EMAS = aksen utama,
-         CRIMSON = bahaya/terbatas, HIJAU = aksen kontekstual langka.
-            ========================================================= */
+   Hirarki: HITAM = panggung, IVORY = teks, EMAS = aksen utama,
+   CRIMSON = bahaya/terbatas, HIJAU = aksen kontekstual langka.
+   ========================================================= */
 
-            @theme {
-              /* --- Warna dasar (panggung) --- */
-                --color-obsidian: #070707;
-                  --color-deep: #0b0b0b;
-                    --color-charcoal: #131313;
-                      --color-raised: #191817;
-                        --color-border-dark: #2b2925;
+@theme {
+  /* --- Warna dasar (panggung) --- */
+  --color-obsidian: #070707;
+  --color-deep: #0b0b0b;
+  --color-charcoal: #131313;
+  --color-raised: #191817;
+  --color-border-dark: #2b2925;
 
-                          /* --- Teks --- */
-                            --color-ivory: #e8deca;
-                              --color-muted: #a69e91;
+  /* --- Teks --- */
+  --color-ivory: #e8deca;
+  --color-muted: #a69e91;
 
-                                /* --- Aksen emas --- */
-                                  --color-gold: #c6a15b;
-                                    --color-gold-pale: #d8c08a;
+  /* --- Aksen emas --- */
+  --color-gold: #c6a15b;
+  --color-gold-pale: #d8c08a;
 
-                                      /* --- Crimson ---
-                                           PENTING (kontras): blood-crimson & dark-crimson TIDAK boleh
-                                                dipakai sebagai warna teks di atas hitam (kontras < 4.5:1).
-                                                     Pakai untuk border, background, ikon besar. Ritual red hanya
-                                                          untuk teks besar (≥24px) atau state terpilih. */
-                                                            --color-crimson: #9e1825;
-                                                              --color-ritual: #c32936;
-                                                                --color-crimson-dark: #571018;
+  /* --- Crimson ---
+       PENTING (kontras): blood-crimson & dark-crimson TIDAK boleh
+       dipakai sebagai warna teks di atas hitam (kontras < 4.5:1).
+       Pakai untuk border, background, ikon besar. Ritual red hanya
+       untuk teks besar (≥24px) atau state terpilih. */
+  --color-crimson: #9e1825;
+  --color-ritual: #c32936;
+  --color-crimson-dark: #571018;
 
-                                                                  /* --- Hijau (Antidote / sukses saja) --- */
-                                                                    --color-mystic: #4f9b58;
-                                                                      --color-toxic: #74d66a;
+  /* --- Hijau (Antidote / sukses saja) --- */
+  --color-mystic: #4f9b58;
+  --color-toxic: #74d66a;
 
-                                                                        /* --- Skala tipografi (fluid, mobile-first) --- */
-                                                                          --text-display-xl: clamp(2.75rem, 1.6rem + 5.5vw, 6rem);
-                                                                            --text-display-xl--line-height: 1.02;
-                                                                              --text-display-lg: clamp(2.25rem, 1.4rem + 3.8vw, 4.25rem);
-                                                                                --text-display-lg--line-height: 1.06;
-                                                                                  --text-h1: clamp(1.875rem, 1.35rem + 2.2vw, 3rem);
-                                                                                    --text-h1--line-height: 1.12;
-                                                                                      --text-h2: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
-                                                                                        --text-h2--line-height: 1.18;
-                                                                                          --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-                                                                                            --text-h3--line-height: 1.3;
-                                                                                              --text-body-lg: 1.125rem;
-                                                                                                --text-body-lg--line-height: 1.7;
-                                                                                                  --text-body: 1rem;
-                                                                                                    --text-body--line-height: 1.65;
-                                                                                                      --text-body-sm: 0.875rem;
-                                                                                                        --text-body-sm--line-height: 1.55;
-                                                                                                          --text-eyebrow: 0.75rem;
-                                                                                                            --text-eyebrow--line-height: 1.4;
-                                                                                                              --text-caption: 0.75rem;
-                                                                                                                --text-caption--line-height: 1.45;
+  /* --- Skala tipografi (fluid, mobile-first) --- */
+  --text-display-xl: clamp(2.75rem, 1.6rem + 5.5vw, 6rem);
+  --text-display-xl--line-height: 1.02;
+  --text-display-lg: clamp(2.25rem, 1.4rem + 3.8vw, 4.25rem);
+  --text-display-lg--line-height: 1.06;
+  --text-h1: clamp(1.875rem, 1.35rem + 2.2vw, 3rem);
+  --text-h1--line-height: 1.12;
+  --text-h2: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
+  --text-h2--line-height: 1.18;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3--line-height: 1.3;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.7;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.55;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.45;
 
-                                                                                                                  /* --- Tracking untuk heading teatrikal --- */
-                                                                                                                    --tracking-arcane: 0.14em;
-                                                                                                                      --tracking-stage: 0.06em;
+  /* --- Tracking untuk heading teatrikal --- */
+  --tracking-arcane: 0.14em;
+  --tracking-stage: 0.06em;
 
-                                                                                                                        /* --- Motion (lambat & sinematik) --- */
-                                                                                                                          --ease-stage: cubic-bezier(0.22, 1, 0.36, 1);
-                                                                                                                            --duration-reveal: 900ms;
+  /* --- Motion (lambat & sinematik) --- */
+  --ease-stage: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-reveal: 900ms;
 
-                                                                                                                              /* --- Radius: kartu mengikuti sudut kartu fisik --- */
-                                                                                                                                --radius-card: 0.875rem;
-                                                                                                                                }
+  /* --- Radius: kartu mengikuti sudut kartu fisik --- */
+  --radius-card: 0.875rem;
+}
 
-                                                                                                                                /* Font dari next/font diinjeksi sebagai CSS variable di <html>,
-                                                                                                                                   jadi harus lewat @theme inline. Fallback sistem tetap ada. */
-                                                                                                                                   @theme inline {
-                                                                                                                                     --font-display: var(--font-cinzel), "Cormorant Garamond", Georgia, "Times New Roman", serif;
-                                                                                                                                       --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-                                                                                                                                       }
+/* Font dari next/font diinjeksi sebagai CSS variable di <html>,
+   jadi harus lewat @theme inline. Fallback sistem tetap ada. */
+@theme inline {
+  --font-display:
+    var(--font-cinzel), "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans:
+    var(--font-manrope), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
+}
 
-                                                                                                                                       @layer base {
-                                                                                                                                         :root {
-                                                                                                                                             color-scheme: dark;
-                                                                                                                                               }
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
 
-                                                                                                                                                 html {
-                                                                                                                                                     background-color: var(--color-obsidian);
-                                                                                                                                                         color: var(--color-ivory);
-                                                                                                                                                             -webkit-text-size-adjust: 100%;
-                                                                                                                                                                 text-rendering: optimizeLegibility;
-                                                                                                                                                                   }
+  html {
+    background-color: var(--color-obsidian);
+    color: var(--color-ivory);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
 
-                                                                                                                                                                     body {
-                                                                                                                                                                         min-height: 100dvh;
-                                                                                                                                                                             font-family: var(--font-sans);
-                                                                                                                                                                                 font-size: var(--text-body);
-                                                                                                                                                                                     line-height: var(--text-body--line-height);
-                                                                                                                                                                                         background-color: var(--color-obsidian);
-                                                                                                                                                                                             -webkit-font-smoothing: antialiased;
-                                                                                                                                                                                               }
+  body {
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    background-color: var(--color-obsidian);
+    -webkit-font-smoothing: antialiased;
+  }
 
-                                                                                                                                                                                                 ::selection {
-                                                                                                                                                                                                     background-color: var(--color-gold);
-                                                                                                                                                                                                         color: var(--color-obsidian);
-                                                                                                                                                                                                           }
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-obsidian);
+  }
 
-                                                                                                                                                                                                             /* Fokus keyboard selalu terlihat (WCAG 2.2) */
-                                                                                                                                                                                                               :focus-visible {
-                                                                                                                                                                                                                   outline: 2px solid var(--color-gold-pale);
-                                                                                                                                                                                                                       outline-offset: 3px;
-                                                                                                                                                                                                                           border-radius: 2px;
-                                                                                                                                                                                                                             }
+  /* Fokus keyboard selalu terlihat (WCAG 2.2) */
+  :focus-visible {
+    outline: 2px solid var(--color-gold-pale);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
-                                                                                                                                                                                                                               img,
-                                                                                                                                                                                                                                 video {
-                                                                                                                                                                                                                                     max-width: 100%;
-                                                                                                                                                                                                                                         height: auto;
-                                                                                                                                                                                                                                           }
-                                                                                                                                                                                                                                           }
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
 
-                                                                                                                                                                                                                                           /* Hormati preferensi pengguna yang mengurangi animasi */
-                                                                                                                                                                                                                                           @media (prefers-reduced-motion: reduce) {
-                                                                                                                                                                                                                                             *,
-                                                                                                                                                                                                                                               *::before,
-                                                                                                                                                                                                                                                 *::after {
-                                                                                                                                                                                                                                                     animation-duration: 0.01ms !important;
-                                                                                                                                                                                                                                                         animation-iteration-count: 1 !important;
-                                                                                                                                                                                                                                                             transition-duration: 0.01ms !important;
-                                                                                                                                                                                                                                                                 scroll-behavior: auto !important;
-                                                                                                                                                                                                                                                                   }
-                                                                                                                                                                                                                                                                   }
-                                                                                                                                                                                                                                                                   
+/* Hormati preferensi pengguna yang mengurangi animasi */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
