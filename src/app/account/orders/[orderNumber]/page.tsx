@@ -3,7 +3,8 @@ import { notFound, redirect } from "next/navigation";
 
 import { PaymentProofForm } from "@/components/payment/PaymentProofForm";
 import { formatRupiah } from "@/lib/format";
-import { getMyOrderByNumber, ORDER_STATUS_LABEL } from "@/lib/orders/queries";
+import { ORDER_STATUS_LABEL } from "@/lib/orders/labels";
+import { getMyOrderByNumber } from "@/lib/orders/queries";
 import { getActivePaymentChannels, getLatestPaymentProof } from "@/lib/payment/queries";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getStoreWhatsAppNumber } from "@/lib/whatsapp";

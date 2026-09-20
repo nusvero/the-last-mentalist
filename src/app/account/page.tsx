@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { formatRupiah } from "@/lib/format";
-import { getMyOrders, ORDER_STATUS_LABEL } from "@/lib/orders/queries";
+import { ORDER_STATUS_LABEL } from "@/lib/orders/labels";
+import { getMyOrders } from "@/lib/orders/queries";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Akun" };

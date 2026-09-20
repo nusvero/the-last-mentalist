@@ -4,19 +4,13 @@ import { redirect } from "next/navigation";
 import { PaymentProofReviewCard } from "@/components/admin/PaymentProofReviewCard";
 import { isCurrentUserAdmin } from "@/lib/auth/roles";
 import { getPendingPaymentProofs } from "@/lib/payment/queries";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Konfirmasi Pembayaran" };
 
 export default async function AdminPaymentsPage() {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/login?next=/admin/pembayaran");
-
-  const isAdmin = await isCurrentUserAdmin();
-  if (!isAdmin) redirect("/");
+  // Login & status staf sudah dijaga src/app/admin/layout.tsx. Halaman ini
+  // butuh cek lebih sempit: hanya ADMIN/SUPER_ADMIN, bukan sembarang staf.
+  if (!(await isCurrentUserAdmin())) redirect("/admin");
 
   const proofs = await getPendingPaymentProofs();
 

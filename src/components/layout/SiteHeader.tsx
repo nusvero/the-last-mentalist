@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { signOutAction } from "@/actions/auth";
-import { isCurrentUserAdmin } from "@/lib/auth/roles";
+import { isCurrentUserStaff } from "@/lib/auth/roles";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function SiteHeader() {
@@ -11,14 +11,14 @@ export async function SiteHeader() {
   } = await supabase.auth.getUser();
 
   let cartCount = 0;
-  let isAdmin = false;
+  let isStaff = false;
   if (user) {
-    const [{ count }, adminStatus] = await Promise.all([
+    const [{ count }, staffStatus] = await Promise.all([
       supabase.from("cart_items").select("id", { count: "exact", head: true }),
-      isCurrentUserAdmin(),
+      isCurrentUserStaff(),
     ]);
     cartCount = count ?? 0;
-    isAdmin = adminStatus;
+    isStaff = staffStatus;
   }
 
   return (
@@ -44,9 +44,9 @@ export async function SiteHeader() {
               <Link href="/account" className="text-ivory hover:text-gold">
                 Akun
               </Link>
-              {isAdmin && (
-                <Link href="/admin/pembayaran" className="text-ivory hover:text-gold">
-                  Konfirmasi Bayar
+              {isStaff && (
+                <Link href="/admin" className="text-ivory hover:text-gold">
+                  Admin
                 </Link>
               )}
               <form action={signOutAction}>
