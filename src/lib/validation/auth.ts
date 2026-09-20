@@ -16,12 +16,19 @@ const newPassword = z
 
 export const signInSchema = z.object({
   email,
-  password: z.string().min(1, "Password wajib diisi.").max(72, "Password terlalu panjang."),
+  password: z
+    .string()
+    .min(1, "Password wajib diisi.")
+    .max(72, "Password terlalu panjang."),
 });
 
 export const signUpSchema = z
   .object({
-    fullName: z.string().trim().min(2, "Nama minimal 2 karakter.").max(120, "Nama terlalu panjang."),
+    fullName: z
+      .string()
+      .trim()
+      .min(2, "Nama minimal 2 karakter.")
+      .max(120, "Nama terlalu panjang."),
     email,
     password: newPassword,
     confirmPassword: z.string(),

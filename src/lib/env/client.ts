@@ -1,12 +1,9 @@
 import { z } from "zod";
 
-const emptyToUndefined = (v: unknown) => (v === "" ? undefined : v);
-
 const clientEnvSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.string().url(),
   NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1),
-  NEXT_PUBLIC_MIDTRANS_CLIENT_KEY: z.preprocess(emptyToUndefined, z.string().min(1).optional()),
 });
 
 export type ClientEnv = z.infer<typeof clientEnvSchema>;
@@ -20,8 +17,8 @@ export function getClientEnv(): ClientEnv {
   const parsed = clientEnvSchema.safeParse({
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-    NEXT_PUBLIC_MIDTRANS_CLIENT_KEY: process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
   });
 
   if (!parsed.success) {

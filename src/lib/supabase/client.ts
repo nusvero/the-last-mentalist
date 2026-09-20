@@ -7,8 +7,8 @@ import type { Database } from "@/types/database";
 export function createSupabaseBrowserClient() {
   const env = getClientEnv();
 
-    return createBrowserClient<Database>(
-        env.NEXT_PUBLIC_SUPABASE_URL,
-            env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-              );
-              }
+  return createBrowserClient<Database>(
+    env.NEXT_PUBLIC_SUPABASE_URL,
+    env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+  );
+}
