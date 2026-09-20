@@ -22,14 +22,14 @@ export default function TokenPreviewPage() {
   return (
     <main className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
       <p className="font-display text-eyebrow tracking-arcane text-gold">
-        A GAME OF DECEPTION
+        GAMES WORTH GATHERING FOR
       </p>
       <h1 className="mt-4 font-display text-display-xl tracking-stage text-ivory">
-        THE LAST MENTALIST
+        PARLOR GAME CO.
       </h1>
       <p className="mt-6 max-w-prose text-body-lg text-muted">
-        Nothing is quite what it seems. Ini halaman cek design token, bukan homepage
-        final.
+        Board games, party games, and everything in between. Ini halaman cek design token,
+        bukan homepage final.
       </p>
 
       <section aria-labelledby="type-heading" className="mt-16 space-y-4">

@@ -20,10 +20,10 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: "The Last Mentalist",
-    template: "%s | The Last Mentalist",
+    default: "Parlor Game Co.",
+    template: "%s | Parlor Game Co.",
   },
-  description: "Nothing is quite what it seems.",
+  description: "Board games, party games, and everything worth gathering for.",
 };
 
 export const viewport: Viewport = {

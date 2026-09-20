@@ -56,9 +56,9 @@ create sequence public.order_number_seq;
 create table public.orders (
   id uuid primary key default gen_random_uuid(),
   -- Nomor jalan (bukan reset harian) supaya tetap unik & sekuensial tanpa
-  -- perlu locking tambahan. Format: TLM-YYYYMMDD-00001.
+  -- perlu locking tambahan. Format: PGC-YYYYMMDD-00001.
   order_number text not null default (
-    'TLM-' || to_char(now(), 'YYYYMMDD') || '-'
+    'PGC-' || to_char(now(), 'YYYYMMDD') || '-'
     || lpad(nextval('public.order_number_seq')::text, 5, '0')
   ),
   user_id uuid not null references auth.users (id) on delete restrict,

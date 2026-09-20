@@ -25,7 +25,7 @@ export async function SiteHeader() {
     <header className="border-b border-border-dark bg-obsidian">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <Link href="/" className="font-display text-h3 tracking-stage text-ivory">
-          THE LAST MENTALIST
+          PARLOR GAME CO.
         </Link>
         <nav className="flex items-center gap-6 text-body-sm">
           <Link href="/produk" className="text-ivory hover:text-gold">
