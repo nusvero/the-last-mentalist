@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
+import { PaymentProofForm } from "@/components/payment/PaymentProofForm";
 import { formatRupiah } from "@/lib/format";
 import { getMyOrderByNumber, ORDER_STATUS_LABEL } from "@/lib/orders/queries";
+import { getActivePaymentChannels, getLatestPaymentProof } from "@/lib/payment/queries";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getStoreWhatsAppNumber } from "@/lib/whatsapp";
 
 export const metadata: Metadata = { title: "Detail Pesanan" };
 
@@ -26,15 +29,21 @@ export default async function OrderDetailPage({
   const order = await getMyOrderByNumber(orderNumber);
   if (!order) notFound();
 
+  const isPendingPayment = order.status === "PENDING_PAYMENT";
+  const [channels, latestProof] = isPendingPayment
+    ? await Promise.all([getActivePaymentChannels(), getLatestPaymentProof(order.id)])
+    : [[], null];
+  const whatsappNumber = isPendingPayment ? getStoreWhatsAppNumber() : null;
+
   return (
     <main className="mx-auto max-w-2xl px-5 py-12 sm:px-8">
       {checkout === "sukses" && (
         <div className="mb-8 rounded-md border border-mystic bg-mystic/10 px-4 py-4 text-body text-ivory">
           <p className="font-semibold text-mystic">Pesanan berhasil dibuat.</p>
           <p className="mt-1 text-body-sm text-muted">
-            Instruksi pembayaran (QRIS/e-wallet/transfer bank) dan halaman upload bukti
-            bayar akan segera menyusul &mdash; belum tersedia di versi ini. Simpan nomor
-            pesananmu: <span className="text-ivory">{order.orderNumber}</span>.
+            Simpan nomor pesananmu:{" "}
+            <span className="text-ivory">{order.orderNumber}</span>. Silakan lakukan
+            pembayaran dan upload bukti transfer di bawah.
           </p>
         </div>
       )}
@@ -102,6 +111,45 @@ export default async function OrderDetailPage({
 
       {order.customerNote && (
         <p className="mt-6 text-body-sm text-muted">Catatan: {order.customerNote}</p>
+      )}
+
+      {isPendingPayment && (
+        <div className="mt-6 rounded-card border border-border-dark bg-charcoal p-5">
+          <h2 className="font-display text-h3 text-gold-pale">Pembayaran</h2>
+
+          {latestProof?.status === "PENDING" ? (
+            <p className="mt-3 text-body-sm text-muted">
+              Bukti bayar sudah dikirim ({" "}
+              {new Date(latestProof.createdAt).toLocaleDateString("id-ID", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+              ) dan sedang diperiksa admin.
+            </p>
+          ) : (
+            <>
+              {latestProof?.status === "REJECTED" && (
+                <p className="mt-3 text-body-sm text-ritual">
+                  Bukti bayar sebelumnya ditolak
+                  {latestProof.rejectionReason
+                    ? `: ${latestProof.rejectionReason}`
+                    : "."}{" "}
+                  Silakan upload ulang.
+                </p>
+              )}
+              <div className="mt-4">
+                <PaymentProofForm
+                  orderId={order.id}
+                  orderNumber={order.orderNumber}
+                  orderTotal={order.total}
+                  channels={channels}
+                  whatsappNumber={whatsappNumber}
+                />
+              </div>
+            </>
+          )}
+        </div>
       )}
     </main>
   );
